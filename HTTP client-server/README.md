@@ -1,6 +1,6 @@
 # Simple HTTP Client-Server
 
-This repository contains the submission for Assignment 4 - Simple HTTP Client-Server.
+This folder contains the submission for Assignment 4 - Simple HTTP Client-Server.
 
 In this assignment, we have implemented a simplified TCP concurrent Hyper Text Transfer Protocol (HTTP) client and server. The client and server communicate with each other over a TCP connection, and the client can request resources from the server using HTTP GET requests, or upload resources to the server using HTTP PUT requests. The implementation follows the HTTP specification defined in the RFCs.
 

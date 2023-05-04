@@ -1,6 +1,6 @@
 # TCP and UDP Client-Server Programming Assignment
 
-This repository contains the solutions for Assignment 2 of TCP and UDP Client-Server Programming. The assignment consists of two parts, each requiring the implementation of a client-server system. The detailed description of the assignment can be found in the file `Assgn-2.pdf`.
+This folder contains the solutions for Assignment 2 of TCP and UDP Client-Server Programming. The assignment consists of two parts, each requiring the implementation of a client-server system. The detailed description of the assignment can be found in the file `Assgn-2.pdf`.
 
 ## Part 1 - UDP Time Client-Server
 

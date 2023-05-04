@@ -38,7 +38,7 @@ For each `MyTCP` socket, we need the following:
 
 The threads are killed and the data structures freed when the `MyTCP` socket is closed. For simplicity, in this assignment, we assume that a program will create only one `MyTCP` socket, and the server is iterative. We also assume that the maximum length of a message can be 5000 bytes.
 
-In addition to the main implementation, we have also provided a detailed documentation file, "documentation.txt", which describes the implementation details and design choices in more depth.
+In addition to the main implementation, we have also provided a detailed [documentation](documentation.txt) file, which describes the implementation details and design choices in more depth.
 
 ## How to Use
 

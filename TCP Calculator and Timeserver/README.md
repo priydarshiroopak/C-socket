@@ -1,6 +1,6 @@
 # TCP Time Server and Calculator
 
-This repository contains the completed solution for Assignment 1 of TCP Client-Server Programming. The assignment requires implementing two problems using TCP iterative servers and clients.
+This folder contains the completed solution for Assignment 1 of TCP Client-Server Programming. The assignment requires implementing two problems using TCP iterative servers and clients.
 
 ## Problem 1: Get System Date and Time
 

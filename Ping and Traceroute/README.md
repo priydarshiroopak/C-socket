@@ -1,4 +1,5 @@
 # PingNetInfo
+
 PingNetInfo is a program that takes a site address and finds the route and estimate the latency and bandwidth of each link in the path. It probes by sending ICMP packets and takes three arguments: a site to probe (can be either a name like cse.iitkgp.ac.in or an IP address like 10.3.45.6), the number of times a probe will be sent per link (n), and the time difference between any two probes (T).
 
 ## How it works
