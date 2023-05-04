@@ -1,0 +1,81 @@
+Data Structures and functions used:
+
+struct table: This is a data structure used to store a table of sent and received data as a circular queue.
+
+init_table: This function initializes a given table structure.
+
+my_socket: This function creates a new socket with the given domain, type, and protocol. It returns the file descriptor for the socket.
+
+my_bind: This function binds a socket to a specific address and port.
+
+my_listen: This function listens for incoming connections on the specified socket.
+
+my_accept: This function accepts an incoming connection on the specified socket.
+
+my_connect: This function connects the socket to the specified remote address and port.
+
+my_send: This function sends data on the socket.
+
+my_recv: This function receives data on the socket.
+
+my_close: This function closes the specified socket.
+
+struct table: This is a data structure used to store a table of sent and received data as a circular queue.
+
+sender_table: This is a pointer to a table structure used to store sent data.
+
+receiver_table: This is a pointer to a table structure used to store received data.
+
+send_mutex: This is a mutex used to protect access to the sender table.
+
+recv_mutex: This is a mutex used to protect access to the receiver table.
+
+fd_mutex: This is a mutex used to protect access to the file descriptor.
+
+_sockfd: This is a variable that stores the accepted socket file descriptor.
+
+send_full: This is a condition variable used to signal that the sender table is full.
+
+recv_not_empty: This is a condition variable used to signal that the receiver table is not empty.
+
+send_empty: This is a condition variable used to signal that the sender table is empty.
+
+send_thread: This is a thread function that sends data on the socket.
+
+recv_thread: This is a thread function that receives data on the socket.
+
+
+
+Description of working:
+
+for my_send call:
+    Basically, we wait till table is not full and then insert the message in the table. (non blocking return)
+    If the table sender_table is already full, then we wait for the condition variable send_full to be signaled. We are sending the signal every time the senter_table is empty.
+    Once there is a space in the table, we lock it and insert the message. Then unlock it.
+
+for my_recv call:
+    Basically, we wait till table is not empty and then read the message from the table. (blocking till message is received)
+    If the table receiver_table is empty, then we wait for the condition variable recv_not_empty to be signaled. We are sending the signal every time we complete a message receive.
+    Then we read the entry from the table and then remove it (change the index actually).
+
+Thread:
+    send_thread:
+        running an infinite while loop. checking if there is any entry in the sender_table.
+        If yes, then we send it using the actual send() call in chunks of 1000 and also adding a len field in the first 2 bytes.
+        If not, then we just continue and send the signal send_empty.
+
+    recv_thread:
+        Running an infinite while loop. Checking if the table has an empty field.
+        If yes, then we check if there is any message to be received.
+        If we call my_close in between receiving the message then we stop this here only.
+        If not an empty field in table, then just continue.
+
+Implementing an Iterative server:
+    The send_thread and recv_thread are created on a socket call and persist over any number of accept - close calls.
+    To make sure that the threads are not running on a closed socket, we initialise the sockfd as -1 and do some bookkeeping on a close() call:
+        We wait for the send_table to be cleared (wait on send_empty cond).
+        Since my_recv are already blocking for messages and return only when message is read from recv_table, no need to wait for recv_table to be cleared.
+        We set the sockfd to -1.
+        We clear the recv_table to make sure that no old messages are read in further iterations.
+
+**NOTE: This message oriented TCP implementation will work only for an iterative server.**
