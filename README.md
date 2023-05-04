@@ -1,6 +1,6 @@
-# Computer Networks (CS31204/ CS39006)
+# Computer Networks (C socket programming)
 
-This repository contains solutions to six assignments related to C socket programming. Each assignment is contained within its respective folder, and each folder contains a README file that describes the assignment and its solution.
+This repository contains solutions to six assignments related to C socket programming for my `Computer Networks Theory(CS31204)/ Laboratory(CS39006)` course at IIT Kharagpur. Each assignment is contained within its respective folder, and each folder contains a README file that describes the assignment and its solution.
 
 ## [TCP Time Server and Calculator](TCP%20Calculator%20and%20Timeserver)
 
